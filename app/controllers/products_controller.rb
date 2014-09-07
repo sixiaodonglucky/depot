@@ -33,22 +33,22 @@ class ProductsController < ApplicationController
     img_data = ""
     name = ""
     if image.present?
-       img_data = image.read
-       name = image.original_filename
+        img_data = image.read
+        name = image.original_filename
+        time = Time.now.strftime("%Y%m%d%H%M%S")
+        new_name_begin = time
+        new_name_end = File.extname(name)
+        new_name = new_name_begin+new_name_end
+        @product.image_url = new_name
+        File.open("#{Rails.root}/app/assets/images/"+new_name, "wb") { |file| 
+        file.write(img_data)
+     }
     end  
     price = params[:product][:price]
     #content_size = image.size
-    time = Time.now.strftime("%Y%m%d%H%M%S")
-    new_name_begin = time
-    new_name_end = File.extname(name)
-    new_name = new_name_begin+new_name_end
-    @product.image_url = new_name
     @product.title = title
     @product.description = description
     @product.price = price
-    File.open("#{Rails.root}/app/assets/images/"+new_name, "wb") { |file| 
-      file.write(img_data)
-     }
     respond_to do |format|
       if @product.save
         format.html { redirect_to @product, notice: t("depot.successfully") }
