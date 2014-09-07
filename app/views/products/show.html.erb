@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong><%= t("depot.Title")%>:</strong>
+  <%= @product.title %>
+</p>
+
+<p>
+  <strong><%= t("depot.Description")%>:</strong>
+  <%= @product.description %>
+</p>
+
+<p>
+  <strong><%= t("depot.imgurl")%>:</strong>
+  <%= @product.image_url %>
+</p>
+
+<p>
+  <strong><%= t("depot.price")%>:</strong>
+  <%= @product.price %>
+</p>
+<%= link_to  t("depot.edit"), edit_product_path(@product) %> |
+<%= link_to  t("depot.back"), products_path %>
