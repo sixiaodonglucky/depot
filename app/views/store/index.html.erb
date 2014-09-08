@@ -1,0 +1,17 @@
+<% if notice%>
+<p id="notice"><%= notice%></p>
+<% end %>
+<h1>书籍一览</h1>
+<% @product.each do |product| %>
+	<div class="entry">
+		<%= image_tag(product.image_url,size: "70x80", alt: "Edit Entry")%>
+		<h3><%= product.title%></h3>
+		<%= sanitize(product.description)%>
+		<div class="price_line">
+			<span class="price">
+				<%= number_to_currency(product.price)%>
+			<span>
+			<%= button_to('添加购物车',line_items_path(:product_id => product))%>
+		</div>
+	</div>
+<% end %>

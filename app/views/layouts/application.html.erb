@@ -6,9 +6,19 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
+<body id="store">
+	<div id="banner">
+		<%= image_tag("logo.jpg",size: "40x50", alt: "Edit Entry")%>
+		<%= @page_title || "我的书架"%>
+		<span style="font-size:12px;text-align: right"><%=Time.now.strftime("%Y年%m月%d日%H:%M:%S")%></span>
+	</div>
+	<div id="columns">
+		<div id="side">
+			<a href="http://www.baidu.com">百度</a>
+		</div>
+		<div id="main">
+			<%= yield %>
+		</div>
+	</div>
 </body>
 </html>

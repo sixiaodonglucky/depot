@@ -1,7 +1,9 @@
 zh-CN:
   activerecord:
     models:
-      product: 产品  
+      product: 产品 
+      line_item: 在线产品
+      cart: 购物车 
     attributes:  
       product:  
         title: "标题"  
@@ -226,3 +228,9 @@ zh-CN:
     successfully: 数据保存成功！
     updated: 数据更新成功！
     destroyed: 数据删除成功！
+    deleteRal: 存在在线商品！
+    line_item_suc: 成功创建在线商品.
+    line_item_upd: 在线商品修改成功.
+    product: '产品:'
+    cart: '购物车:'
+    onlineproduct: '在线产品编辑'
