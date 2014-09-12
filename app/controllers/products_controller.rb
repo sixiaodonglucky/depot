@@ -4,6 +4,7 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
+    puts "index 0000000000000  index "+notice.to_s
     @products = Product.all
   end
 
@@ -102,17 +103,33 @@ class ProductsController < ApplicationController
 
   # DELETE /products/1
   # DELETE /products/1.json
-  def destroy
-    @product.transaction do
-      @product.destroy
-        respond_to do |format|
-        format.html { redirect_to products_url, notice: t("depot.destroyed")  }
-        format.json { head :no_content }
-    end
-    end
+  # def destroy
+  #   @product.transaction do
+  #     @product.destroy
+  #       respond_to do |format|
+  #       format.html { redirect_to products_url, notice: t("depot.destroyed")  }
+  #       format.json { head :no_content }
+  #   end
+  #   end
     
+  # end
+  def destroy
+    puts "8888888888888------------: #{@product.errors.empty?}" 
+      @product.destroy
+       respond_to do |format|
+      if @product.errors.empty?
+         format.html { redirect_to products_url, notice: t("depot.destroyed")  }
+         format.json { head :no_content }
+      else
+        puts "ddddddddddddddddddddddd"
+        error = ''
+        @product.errors.each { |msg,val| error = val.to_s }
+         format.html { redirect_to products_url,notice: error  }
+         format.json { render json: @product.errors, status: :unprocessable_entity }
+      end  
+        
+    end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

@@ -31,10 +31,11 @@ class LineItemsController < ApplicationController
     # @line_item = line_items.build(:product => product)
     # @line_item = @cart.line_items.build 
     # @line_item.product = product
-    @line_item = @cart.line_items.build(:product_id => product.id)
+   # @line_item = @cart.line_items.build(:product_id => product.id)
+   @line_item = @cart.add_product(product.id)
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item, notice: t("depot.line_item_suc") }
+        format.html { redirect_to @line_item.cart, notice: t("depot.line_item_suc") }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }

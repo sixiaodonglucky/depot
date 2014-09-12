@@ -8,7 +8,6 @@ class Product < ActiveRecord::Base
 	# end
 	private 
 		def ensure_not_referenced_by_any_line_item
-			puts "-----------------vvvvvvvvv:"+self.image_url.to_s
 			if line_items.empty?
 				image_url = self.image_url
 		        path = "#{Rails.root}/app/assets/images/" + image_url
@@ -18,8 +17,8 @@ class Product < ActiveRecord::Base
 				return true
 			else
 				# errors.add(:base,'sssssssssss')
-				#errors.add(:base, t("depot.deleteRal")) 
-				errors[:base] << "hhhhhhhhhh"
+				# errors.add(:error, t("depot.deleteRal")) 
+				errors[:error] << "ssssss"
 				return false
 			end
 		end
