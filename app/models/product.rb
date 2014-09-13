@@ -16,9 +16,8 @@ class Product < ActiveRecord::Base
 		          end   
 				return true
 			else
-				# errors.add(:base,'sssssssssss')
-				# errors.add(:error, t("depot.deleteRal")) 
-				errors[:error] << "ssssss"
+				errors.add(:error, I18n.t("depot.deleteRal")) 
+				# errors[:error] << "ssssss"
 				return false
 			end
 		end
